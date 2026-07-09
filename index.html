@@ -26,7 +26,7 @@
             overflow: hidden;
             text-align: center;
             position: relative;
-            padding-bottom: 60px; /* Space for permanent footer */
+            padding-bottom: 60px; 
         }
 
         @keyframes elegantBg {
@@ -97,7 +97,7 @@
             box-shadow: 0 5px 15px rgba(217, 4, 41, 0.3);
         }
 
-        /* Main Proposal Container (Strict Dimensions Fix) */
+        /* Main Proposal Container */
         .proposal-container {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(25px);
@@ -130,8 +130,8 @@
             line-height: 1.3;
         }
 
-        /* Video Frame Box Fix */
-        .video-frame {
+        /* GIF Frame Alignment Fix */
+        .gif-frame {
             margin: 15px auto;
             display: flex;
             justify-content: center;
@@ -140,18 +140,17 @@
             height: 180px;
             border-radius: 25px;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.2); /* Soft fallback background */
             box-shadow: 0 10px 25px rgba(255, 77, 109, 0.15);
         }
 
-        .video-frame video {
+        .gif-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover; 
         }
 
         .proposal-text {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             color: #4a00e0;
             margin-bottom: 15px;
@@ -164,6 +163,7 @@
             height: 140px; 
             width: 100%;
             margin-top: 10px;
+            transition: all 0.3s ease;
         }
 
         .action-btn {
@@ -177,7 +177,7 @@
             transition: all 0.12s ease-out;
         }
 
-        /* Yes Button Style - Static in Center */
+        /* Yes Button Style */
         #yesBtn {
             background: linear-gradient(135deg, #ff0055 0%, #d90429 100%);
             color: white;
@@ -222,7 +222,7 @@
             z-index: 1;
         }
 
-        /* Permanent Footer Signature Fix (Always Visible Everywhere) */
+        /* Permanent Footer Signature (First page aur sabhi pages par dikhega) */
         .footer-signature {
             position: fixed;
             bottom: 20px;
@@ -234,7 +234,7 @@
             color: #66434f;
             letter-spacing: 1px;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
-            z-index: 200; /* Keeps it on top of name overlay too */
+            z-index: 200; 
             pointer-events: none;
         }
 
@@ -262,11 +262,8 @@
             "Suno... Tum meri wo aadat ho, jise main kabhi chhodna nahi chahta! ❤️"
         </div>
 
-        <div class="video-frame">
-            <video id="catVideo" autoplay loop muted playsinline>
-                <source src="Billi.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <div class="gif-frame">
+            <img id="catDisplay" src="billi.gif" alt="Billi Proposal">
         </div>
         
         <div class="proposal-text" id="questionText">Hey, Kya tum meri bae banogi? 💍</div>
@@ -316,13 +313,6 @@
 
             document.getElementById('questionText').innerHTML = `Hey ${crushName}, Kya tum meri bae banogi? 💍`;
 
-            // Mobile compatibility video trigger
-            const video = document.getElementById('catVideo');
-            if(video) {
-                video.play().catch(error => console.log("Autoplay forced dynamic"));
-            }
-
-            // No button placement inside container wrapper bounds
             const noBtn = document.getElementById('noBtn');
             noBtn.style.right = '10px';
             noBtn.style.top = '50px';
@@ -353,7 +343,6 @@
             const noBtn = document.getElementById('noBtn');
             const warningNotice = document.getElementById('warningNotice');
             
-            // Scaled down fixed safe layout points inside the smaller mobile card
             const spots = [
                 { left: '10px', top: '15px' },    
                 { right: '10px', top: '15px' },   
@@ -383,13 +372,15 @@
             return false;
         }
 
+        // YES CLICKED: YES button and whole area hidden completely
         function celebrateYes() {
             clearInterval(shayariInterval);
 
             document.getElementById('shayariText').innerHTML = `Dhadkanein badh si gayi hain tumhari haan se... ❤️`;
             document.getElementById('questionText').innerHTML = `Yayyy! I Love You So Much ${crushName}!! 💋✨`;
             
-            document.getElementById('noBtn').style.display = 'none';
+            // Hiding the buttons wrapper zone entirely so NO buttons appear
+            document.getElementById('btnWrapper').style.display = 'none';
             document.getElementById('warningNotice').style.display = 'none';
             
             triggerHearts();
