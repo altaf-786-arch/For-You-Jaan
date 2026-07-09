@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Romantic Promise ❤️</title>
+    <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -123,34 +124,37 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
             transition: opacity 0.5s ease-in-out;
         }
 
-        /* GIF Frame */
-        .gif-frame {
-            margin-bottom: 25px;
+        /* Video Frame Customization */
+        .video-frame {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
         }
 
-        .gif-frame img {
+        .video-frame video {
             width: 200px;
             height: 200px;
-            object-fit: contain;
+            object-fit: cover; 
             border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.2);
         }
 
         .proposal-text {
             font-size: 24px;
             font-weight: 700;
             color: #4a00e0;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         /* Buttons Container Zone */
         .buttons-wrapper {
             position: relative;
-            height: 180px; /* Thoda height bada kiya taaki safe zone points mil sakein */
+            height: 180px; 
             width: 100%;
         }
 
@@ -162,10 +166,10 @@
             border-radius: 50px;
             cursor: pointer;
             position: absolute;
-            transition: all 0.12s ease-out; /* Ultra snappy response */
+            transition: all 0.12s ease-out;
         }
 
-        /* Yes Button Style - Static in Center */
+        /* Yes Button Style */
         #yesBtn {
             background: linear-gradient(135deg, #ff0055 0%, #d90429 100%);
             color: white;
@@ -188,7 +192,7 @@
             border: 2px solid #d90429;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             user-select: none;
-            z-index: 20; /* Keep it on top so it handles touches perfectly */
+            z-index: 20;
         }
 
         /* Warning Notice text styling */
@@ -236,6 +240,7 @@
 
     <div class="heart-stream" id="heartBox"></div>
 
+    <!-- 1. Name Input Overlay -->
     <div class="name-overlay" id="nameOverlay">
         <div class="name-box">
             <h2>Apna Pyaara Sa Naam Likho ✨</h2>
@@ -245,17 +250,23 @@
         </div>
     </div>
 
+    <!-- 2. Main Premium Card -->
     <div class="proposal-container" id="mainProposalCard">
         <div class="shayari-canvas" id="shayariText">
             "Suno... Tum meri wo aadat ho, jise main kabhi chhodna nahi chahta! ❤️"
         </div>
 
-        <div class="gif-frame">
-            <img id="catDisplay" src="billi.gif" alt="Billi Proposal">
+        <!-- FIXED CASE SENSITIVITY: Billi.mp4 Setup -->
+        <div class="video-frame">
+            <video id="catVideo" autoplay loop muted playsinline>
+                <source src="Billi.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
         
         <div class="proposal-text" id="questionText">Hey, Kya tum meri bae banogi? 💍</div>
 
+        <!-- Buttons Section -->
         <div class="buttons-wrapper" id="btnWrapper">
             <button class="action-btn" id="yesBtn" onclick="celebrateYes()">Yes, I Do!</button>
             <button class="action-btn" id="noBtn" 
@@ -301,7 +312,13 @@
 
             document.getElementById('questionText').innerHTML = `Hey ${crushName}, Kya tum meri bae banogi? 💍`;
 
-            // Shuruat me No button ko Right side me safe position pe rakhna
+            // Mobile compatibility video trigger
+            const video = document.getElementById('catVideo');
+            if(video) {
+                video.play().catch(error => console.log("Autoplay context bypass"));
+            }
+
+            // No button initial position
             const noBtn = document.getElementById('noBtn');
             noBtn.style.right = '10px';
             noBtn.style.top = '70px';
@@ -323,7 +340,6 @@
             }, 4500);
         }
 
-        // Foolproof Grid-Based Anti-Chhupna Jumping Engine
         function jumpToSafeSpot(e) {
             if(e) {
                 e.preventDefault();
@@ -333,15 +349,13 @@
             const noBtn = document.getElementById('noBtn');
             const warningNotice = document.getElementById('warningNotice');
             
-            // 4 Fixed Points defined strictly around Yes Button (Never overlaps)
             const spots = [
-                { left: '15px', top: '20px' },    // Top Left Corner
-                { right: '15px', top: '20px' },   // Top Right Corner
-                { left: '15px', top: '120px' },   // Bottom Left Corner
-                { right: '15px', top: '120px' }   // Bottom Right Corner
+                { left: '15px', top: '20px' },    
+                { right: '15px', top: '20px' },   
+                { left: '15px', top: '120px' },   
+                { right: '15px', top: '120px' }   
             ];
 
-            // Next spot par cycle karna taaki random hone par bhi dobara ek hi jagah na aaye
             let nextSpotIndex = Math.floor(Math.random() * spots.length);
             while (nextSpotIndex === currentSpotIndex) {
                 nextSpotIndex = Math.floor(Math.random() * spots.length);
@@ -349,25 +363,21 @@
             currentSpotIndex = nextSpotIndex;
             const chosenSpot = spots[currentSpotIndex];
 
-            // Reset previous properties to avoid css conflicts
             noBtn.style.left = 'auto';
             noBtn.style.right = 'auto';
             noBtn.style.top = 'auto';
             noBtn.style.bottom = 'auto';
 
-            // Apply new spot positions layout
             if(chosenSpot.left) noBtn.style.left = chosenSpot.left;
             if(chosenSpot.right) noBtn.style.right = chosenSpot.right;
             if(chosenSpot.top) noBtn.style.top = chosenSpot.top;
 
-            // Instantly show warning text
             warningNotice.innerHTML = "Are! Yes par hi click karo, No nahi kar sakti! 😜";
             warningNotice.style.opacity = '1';
 
             return false;
         }
 
-        // YES Celebration Block
         function celebrateYes() {
             clearInterval(shayariInterval);
 
