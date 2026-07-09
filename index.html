@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Romantic Promise ❤️</title>
-    <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -27,6 +26,7 @@
             overflow: hidden;
             text-align: center;
             position: relative;
+            padding-bottom: 60px; /* Space for permanent footer */
         }
 
         @keyframes elegantBg {
@@ -54,24 +54,24 @@
 
         .name-box {
             background: rgba(255, 255, 255, 0.85);
-            padding: 40px;
+            padding: 30px 25px;
             border-radius: 30px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.1);
             width: 90%;
-            max-width: 420px;
+            max-width: 400px;
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .name-box h2 {
             color: #d90429;
-            font-size: 26px;
+            font-size: 24px;
             margin-bottom: 20px;
         }
 
         .name-box input {
             width: 100%;
-            padding: 15px 20px;
-            font-size: 18px;
+            padding: 12px 20px;
+            font-size: 16px;
             border: 2px solid #ffb3c6;
             border-radius: 50px;
             outline: none;
@@ -88,24 +88,24 @@
         .name-box button {
             background: #d90429;
             color: white;
-            padding: 12px 35px;
+            padding: 10px 30px;
             border: none;
             border-radius: 50px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(217, 4, 41, 0.3);
         }
 
-        /* Main Proposal Container */
+        /* Main Proposal Container (Strict Dimensions Fix) */
         .proposal-container {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            width: 92%;
-            max-width: 500px;
-            padding: 40px 25px;
-            border-radius: 40px;
+            width: 90%;
+            max-width: 440px;
+            padding: 30px 20px;
+            border-radius: 35px;
             border: 1px solid rgba(255, 255, 255, 0.6);
             box-shadow: 0 35px 70px rgba(255, 77, 109, 0.25);
             opacity: 0;
@@ -118,49 +118,57 @@
         /* Shayaris Section */
         .shayari-canvas {
             font-family: 'Caveat', cursive;
-            font-size: 34px;
+            font-size: 28px;
             color: #d90429;
-            min-height: 110px;
+            min-height: 90px;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 10px;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
             transition: opacity 0.5s ease-in-out;
+            line-height: 1.3;
         }
 
-        /* Video Frame Customization */
+        /* Video Frame Box Fix */
         .video-frame {
-            margin-bottom: 20px;
+            margin: 15px auto;
             display: flex;
             justify-content: center;
+            align-items: center;
+            width: 180px;
+            height: 180px;
+            border-radius: 25px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.2); /* Soft fallback background */
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.15);
         }
 
         .video-frame video {
-            width: 200px;
-            height: 200px;
+            width: 100%;
+            height: 100%;
             object-fit: cover; 
-            border-radius: 30px;
-            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.2);
         }
 
         .proposal-text {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
             color: #4a00e0;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
+            padding: 0 10px;
         }
 
         /* Buttons Container Zone */
         .buttons-wrapper {
             position: relative;
-            height: 180px; 
+            height: 140px; 
             width: 100%;
+            margin-top: 10px;
         }
 
         .action-btn {
-            padding: 14px 40px;
-            font-size: 18px;
+            padding: 12px 35px;
+            font-size: 16px;
             font-weight: 700;
             border: none;
             border-radius: 50px;
@@ -169,11 +177,11 @@
             transition: all 0.12s ease-out;
         }
 
-        /* Yes Button Style */
+        /* Yes Button Style - Static in Center */
         #yesBtn {
             background: linear-gradient(135deg, #ff0055 0%, #d90429 100%);
             color: white;
-            box-shadow: 0 10px 30px rgba(217, 4, 41, 0.4);
+            box-shadow: 0 10px 25px rgba(217, 4, 41, 0.4);
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
@@ -181,8 +189,7 @@
         }
 
         #yesBtn:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-            box-shadow: 0 15px 35px rgba(217, 4, 41, 0.6);
+            transform: translate(-50%, -50%) scale(1.08);
         }
 
         /* No Button Style */
@@ -190,18 +197,18 @@
             background: rgba(255, 255, 255, 0.95);
             color: #d90429;
             border: 2px solid #d90429;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
             user-select: none;
             z-index: 20;
         }
 
         /* Warning Notice text styling */
         .warning-text {
-            margin-top: 15px;
-            font-size: 16px;
+            margin-top: 10px;
+            font-size: 14px;
             font-weight: 600;
             color: #d90429;
-            min-height: 25px;
+            min-height: 20px;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -215,19 +222,20 @@
             z-index: 1;
         }
 
-        /* Footer Signature */
+        /* Permanent Footer Signature Fix (Always Visible Everywhere) */
         .footer-signature {
-            position: absolute;
+            position: fixed;
             bottom: 20px;
+            left: 0;
+            width: 100%;
             font-family: 'Playfair Display', serif;
-            font-size: 16px;
+            font-size: 15px;
             font-style: italic;
             color: #66434f;
             letter-spacing: 1px;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
-            z-index: 10;
-            width: 100%;
-            left: 0;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+            z-index: 200; /* Keeps it on top of name overlay too */
+            pointer-events: none;
         }
 
         .footer-signature span {
@@ -240,7 +248,6 @@
 
     <div class="heart-stream" id="heartBox"></div>
 
-    <!-- 1. Name Input Overlay -->
     <div class="name-overlay" id="nameOverlay">
         <div class="name-box">
             <h2>Apna Pyaara Sa Naam Likho ✨</h2>
@@ -250,13 +257,11 @@
         </div>
     </div>
 
-    <!-- 2. Main Premium Card -->
     <div class="proposal-container" id="mainProposalCard">
         <div class="shayari-canvas" id="shayariText">
             "Suno... Tum meri wo aadat ho, jise main kabhi chhodna nahi chahta! ❤️"
         </div>
 
-        <!-- FIXED CASE SENSITIVITY: Billi.mp4 Setup -->
         <div class="video-frame">
             <video id="catVideo" autoplay loop muted playsinline>
                 <source src="Billi.mp4" type="video/mp4">
@@ -266,7 +271,6 @@
         
         <div class="proposal-text" id="questionText">Hey, Kya tum meri bae banogi? 💍</div>
 
-        <!-- Buttons Section -->
         <div class="buttons-wrapper" id="btnWrapper">
             <button class="action-btn" id="yesBtn" onclick="celebrateYes()">Yes, I Do!</button>
             <button class="action-btn" id="noBtn" 
@@ -315,13 +319,13 @@
             // Mobile compatibility video trigger
             const video = document.getElementById('catVideo');
             if(video) {
-                video.play().catch(error => console.log("Autoplay context bypass"));
+                video.play().catch(error => console.log("Autoplay forced dynamic"));
             }
 
-            // No button initial position
+            // No button placement inside container wrapper bounds
             const noBtn = document.getElementById('noBtn');
             noBtn.style.right = '10px';
-            noBtn.style.top = '70px';
+            noBtn.style.top = '50px';
 
             startShayariLoop();
         }
@@ -349,11 +353,12 @@
             const noBtn = document.getElementById('noBtn');
             const warningNotice = document.getElementById('warningNotice');
             
+            // Scaled down fixed safe layout points inside the smaller mobile card
             const spots = [
-                { left: '15px', top: '20px' },    
-                { right: '15px', top: '20px' },   
-                { left: '15px', top: '120px' },   
-                { right: '15px', top: '120px' }   
+                { left: '10px', top: '15px' },    
+                { right: '10px', top: '15px' },   
+                { left: '10px', top: '90px' },   
+                { right: '10px', top: '90px' }   
             ];
 
             let nextSpotIndex = Math.floor(Math.random() * spots.length);
